@@ -1,12 +1,13 @@
 set -e
 echo "Esse shell script não rodará pois você precisa preencher as informações"
-FALHANDOagora
+#FALHANDOagora
 
 echo "Iniciando configuração de partições"
 
-mkfs.ext4 /dev/sda1 mount /dev/sd1 /mnt
+mkfs.ext4 /dev/sda1 
+mount /dev/sda1 /mnt
 mkdir /mnt/home
-mount /dev/sd10 /mnt/home
+mount /dev/sda10 /mnt/home
 
 pacstrap /mnt base base-devel
 genfstab -Up /mnt >> /mnt/etc/fstab
@@ -26,7 +27,7 @@ echo "  Ok."
 
 echo "Agora edite suas configurações do pacman (6 seg)"
 echo "É recomendado que você descomente a seção [multilib], e colors"
-sleep 6
+sleep 3
 vim /mnt/etc/pacman.conf
 
 echo "Digite a senha do usuário 'root':"
@@ -51,7 +52,8 @@ git
 
 
 echo "Adicione <seuUser> ALL=(ALL) ALL ao sudoers"
-arch-chroot /mnt useradd -m -g users -G lp,wheel,adm,rfkill -s /bin/zsh marcospb19 sleep 2
+arch-chroot /mnt useradd -m -g users -G lp,wheel,adm,rfkill -s /bin/zsh marcospb19 
+sleep 3
 arch-chroot /mnt vim /etc/sudoers
 
 echo "Digite a senha do usuário marcospb19:"

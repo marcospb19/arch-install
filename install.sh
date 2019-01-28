@@ -21,9 +21,9 @@ echo "Iniciando configuração de partições"
 # mkswap /dev/sda11 # swap?
 # swapon /dev/sda11
 mkfs.ext4 /dev/sda1 # -L ARCH_ROOT
-mount /dev/sd1 /mnt
+mount /dev/sda1 /mnt
 mkdir /mnt/home
-mount /dev/sd10 /mnt/home
+mount /dev/sda10 /mnt/home
 
 #   swap 1gb !melhor testar isto em produção!
 # dd if=/dev/zero of=/mnt/swapfile bs=1024 count=1048576
@@ -59,9 +59,9 @@ echo arch > /mnt/etc/hostname
 echo "  Ok."
 #
 
-echo "Agora edite suas configurações do pacman (6 seg)"
+echo "Agora edite suas configurações do pacman (5 seg)"
 echo "É recomendado que você descomente a seção [multilib], e colors"
-sleep 6
+sleep 5
 vim /mnt/etc/pacman.conf
 
 echo "Digite a senha do usuário 'root':"
@@ -89,7 +89,7 @@ git
 
 echo "Adicione <seuUser> ALL=(ALL) ALL ao sudoers"
 arch-chroot /mnt useradd -m -g users -G lp,wheel,adm,rfkill -s /bin/zsh marcospb19 # grupos opcionais
-sleep 2
+sleep 4
 #-g = grupo principal, -G = grupos secundarios
 
 arch-chroot /mnt vim /etc/sudoers
